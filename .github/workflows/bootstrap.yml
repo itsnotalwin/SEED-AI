@@ -25,7 +25,7 @@ jobs:
           test -s /tmp/seed-source/index.html
           test -s /tmp/seed-source/src/model.js
           cp -a /tmp/seed-source/. .
-          rm -f seed-code-payload.b64 seed-package.tar.gz .github/workflows/bootstrap.yml
+          rm -f seed-code-payload.b64 seed-package.tar.gz
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
