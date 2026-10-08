@@ -1,0 +1,40 @@
+name: SEED Evolution Lab (bounded)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'laboratory/**'
+      - 'tests/evolve.test.js'
+      - '.github/workflows/evolution.yml'
+      - 'src/model.js'
+  schedule:
+    # 08:00 Saturdays in South Africa (UTC+2), subject to Actions scheduling delays.
+    - cron: '0 6 * * 6'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evolution-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run existing and evolution tests
+        run: npm test
+      - name: Run reproducible SEED-0 experiments
+        run: node laboratory/evolve.js
+      - name: Preserve candidate and report for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: seed-evolution-${{ github.run_id }}
+          path: laboratory/out/
+          retention-days: 7
+          if-no-files-found: error
