@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10110f" />
+  <meta name="description" content="SEED AI — a personal AI experiment, coded and trained from scratch." />
+  <title>SEED — An intelligence in progress</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Project navigation">
+      <a class="brand" href="./" aria-label="SEED home"><span class="brand-mark">✳</span><span>SEED <small>AI LAB / 001</small></span></a>
+      <div class="sidebar-group">
+        <span class="eyebrow">WORKSPACE</span>
+        <button class="nav active" data-view="chat"><span>◫</span> Conversation</button>
+        <button class="nav" data-view="learn"><span>✣</span> Teach & train</button>
+        <button class="nav" data-view="memory"><span>▧</span> Brain & memory</button>
+        <button class="nav" data-view="about"><span>◈</span> About SEED</button>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="live-indicator"><span class="dot"></span> LOCAL / NO API</div>
+        <p>Not a wrapper.<br />Our own tiny neural model.<br />Learning starts here.</p>
+        <span class="footnote">SEED-0 · EXPERIMENTAL BUILD</span>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><span class="crumb">LABORATORY <span class="slash">/</span> <span id="currentView">CONVERSATION</span></span><span class="version">VERSION 0.1.0</span></header>
+      <section class="view" id="chat-view">
+        <div class="chat-inner">
+          <div class="intro" id="intro"><div class="seed-symbol">✳</div><p class="kicker">INTELLIGENCE IN PROGRESS</p><h1>Every mind starts<br /><em>somewhere.</em></h1><p class="intro-copy">I'm SEED. A tiny neural experiment built from scratch, with a brain you can teach. I don't know much yet. That's the point.</p><div class="pills"><span>100% LOCAL</span><span>NO PRETRAINED WEIGHTS</span><span>USER-OWNED MEMORY</span></div></div>
+          <div class="messages" id="messages" aria-live="polite"></div>
+        </div>
+        <div class="composer-wrap"><form id="chatForm" class="composer"><label for="prompt" class="sr-only">Ask SEED</label><textarea id="prompt" rows="2" placeholder="Ask me something..." maxlength="2000"></textarea><button type="submit" class="send" aria-label="Send message">↗</button></form><p class="composer-hint">Enter to send · Shift+Enter for a new line · Messages stay on this device</p></div>
+      </section>
+      <section class="view hidden" id="learn-view"><div class="panel"><span class="kicker">02 / TEACH & TRAIN</span><h1>Show me how<br /><em>to learn.</em></h1><p class="lede">Two ways to teach SEED: save a question-and-answer example for useful personal responses, or train its original tiny neural model to predict characters. These are different processes.</p><div class="two-col"><form id="teachForm" class="card"><span class="card-index">01 — DIRECT TEACHING</span><h2>Teach an answer</h2><label for="question">When someone asks...</label><input id="question" maxlength="2000" placeholder="What is my favourite colour?" required /><label for="answer">SEED should answer...</label><textarea id="answer" maxlength="2000" placeholder="You prefer black and white." required></textarea><button type="submit" class="primary">Save example <span>↗</span></button></form><form id="trainForm" class="card"><span class="card-index">02 — NEURAL TRAINING</span><h2>Train SEED-0</h2><label for="corpus">Your training text</label><textarea id="corpus" class="corpus" maxlength="18000" placeholder="Write or paste a few paragraphs for the model to learn character patterns..." required></textarea><label for="epochs">Training passes <span id="epochCount">3</span></label><input type="range" id="epochs" min="1" max="10" value="3" /><button type="submit" class="primary" id="trainButton">Train neural model <span>↗</span></button></form></div><div class="note" id="status" role="status">Nothing is sent to a server. Training can briefly use your CPU.</div><div class="card generator"><span class="card-index">03 — NEURAL GENERATOR</span><h2>Experiment with learned patterns</h2><p>Generates characters using our own trained weights. Early output will be nonsense; it is not a capable conversational model.</p><div class="inline-controls"><input id="starter" maxlength="100" placeholder="Starting text (optional)" /><button id="generate" class="outline">Generate →</button></div><pre id="generated" class="generated">Train the model and test its output here.</pre></div></div></section>
+      <section class="view hidden" id="memory-view"><div class="panel"><span class="kicker">03 / PERSISTENT BRAIN</span><h1>Your AI.<br /><em>Your memories.</em></h1><p class="lede">Your examples and memories live in this browser's local storage. Export a backup before clearing your browser data.</p><div class="stats"><div><strong id="examplesCount">0</strong><span>LEARNED EXAMPLES</span></div><div><strong id="factsCount">0</strong><span>PERSONAL FACTS</span></div><div><strong id="stepsCount">0</strong><span>NEURAL UPDATES</span></div></div><form class="card memory-form" id="factForm"><span class="card-index">ADD A MEMORY</span><div class="inline-controls"><input id="factLabel" maxlength="2000" placeholder="Memory label" required /><input id="factContent" maxlength="2000" placeholder="What SEED should remember" required /><button class="primary" type="submit">Remember</button></div></form><h2 class="section-heading">Stored knowledge</h2><div id="memoryList" class="memory-list"></div><div class="actions"><button id="export" class="outline">Export brain (.json)</button><label class="outline file-label">Import brain <input id="import" type="file" accept=".json,application/json" hidden /></label><button id="forget" class="danger">Erase local brain</button></div></div></section>
+      <section class="view hidden" id="about-view"><div class="panel"><span class="kicker">04 / THE EXPERIMENT</span><h1>Not a wrapper.<br /><em>A beginning.</em></h1><p class="lede">SEED-0 is a tiny neural character model with trainable embeddings, a hidden layer, and a softmax output. We wrote the maths and training code ourselves, including backpropagation. It starts with random weights and no language understanding.</p><div class="about-grid"><div class="card"><span class="card-index">THE ENGINE</span><h2 id="paramCount">— parameters</h2><p>Three-character context. Predicts one next character. It learns statistical patterns, not human-style understanding.</p></div><div class="card"><span class="card-index">THE MEMORY</span><h2>Portable by design</h2><p>Explicit Q&A memories are retrieved when similar questions come up. They are not model weights and can be exported or deleted.</p></div><div class="card"><span class="card-index">THE ROAD AHEAD</span><h2>Research, not hype</h2><p>Next: proper tokenisation, longer-context architectures, curated datasets, evaluations, opt-in contributions and improved training.</p></div><div class="card"><span class="card-index">THE BOUNDARIES</span><h2>Private by default</h2><p>No third-party API calls. No chat upload. No community training. No remote accounts. Browser data can still be lost if cleared.</p></div></div><div class="note">This prototype deliberately does not claim to be a useful general assistant. Building one from randomly initialised weights will require far more training data, experiments and compute.</div></div></section>
+    </main>
+  </div>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
