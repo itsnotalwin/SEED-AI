@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="description" content="SEED Observatory — A transparent window into an AI trained from scratch." />
+  <title>SEED — An Intelligence in Progress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" aria-label="Project navigation">
+      <a class="brand" href="./" aria-label="SEED home">
+        <span class="brand-mark" aria-hidden="true">⬢</span>
+        <span>SEED <small>OBSERVATORY / 001</small></span>
+      </a>
+      
+      <div class="sidebar-group">
+        <span class="eyebrow">SECTIONS</span>
+        <button class="nav active" data-view="overview"><span aria-hidden="true">◈</span> Overview</button>
+        <button class="nav" data-view="evolution"><span aria-hidden="true">⬡</span> Evolution</button>
+        <button class="nav" data-view="arena"><span aria-hidden="true">⬢</span> Arena</button>
+        <button class="nav" data-view="learning"><span aria-hidden="true">⬣</span> Learning</button>
+        <button class="nav" data-view="research"><span aria-hidden="true">◉</span> Research Journal</button>
+        <button class="nav" data-view="model-lab"><span aria-hidden="true">⬠</span> Model Lab</button>
+        <button class="nav" data-view="interact"><span aria-hidden="true">⬡</span> Interact</button>
+        <button class="nav" data-view="memory"><span aria-hidden="true">▧</span> Personal Memory</button>
+      </div>
+      
+      <div class="sidebar-bottom">
+        <div class="live-indicator"><span class="dot" aria-hidden="true"></span> LOCAL / NO API</div>
+        <p>Not a wrapper. Our own neural model, trained from scratch. Development is transparent.</p>
+        <span class="footnote">SEED-001 · EXPERIMENTAL BUILD</span>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+      <header class="topbar">
+        <span class="crumb">OBSERVATORY <span class="slash">/</span> <span id="currentView">OVERVIEW</span></span>
+        <span class="version">v0.1.0-exp</span>
+      </header>
+
+      <!-- OVERVIEW SECTION -->
+      <section class="view active" id="overview-view" aria-labelledby="overview-title">
+        <div class="panel">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <span class="crumb">OBSERVATORY <span class="slash">/</span> OVERVIEW</span>
+          </nav>
+
+          <header class="hero">
+            <span class="kicker">SEED / DEVELOPMENT OBSERVATORY</span>
+            <h1 id="overview-title">AN INTELLIGENCE<br /><em>IN PROGRESS.</em></h1>
+            <p class="hero-copy">SEED is a neural language model trained from randomly initialized weights. No pretrained weights. No API wrappers. This observatory documents every architecture experiment, training run, and measurable improvement.</p>
+            <div class="hero-cta">
+              <a class="btn primary" href="#evolution" data-view="evolution">Explore Evolution →</a>
+              <a class="btn outline" href="#interact" data-view="interact">Interact with SEED-0 →</a>
+            </div>
+          </header>
+
+          <div class="metrics-grid" id="metrics-grid" role="region" aria-label="Current model metrics">
+            <div class="metric-card">
+              <span class="metric-label">VERIFIED MODEL</span>
+              <span class="metric-value" id="metric-model">SEED-0</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">RUNS COMPLETED</span>
+              <span class="metric-value" id="metric-runs">0</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">BEST VALIDATION BPC</span>
+              <span class="metric-value" id="metric-bpc">NOT YET MEASURED</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">LATEST EXPERIMENT</span>
+              <span class="metric-value" id="metric-latest">—</span>
+            </div>
+          </div>
+
+          <section class="section" aria-labelledby="evolution-strip-title">
+            <div class="section-header">
+              <span class="kicker">ARCHITECTURE TIMELINE</span>
+              <h2 id="evolution-strip-title">From SEED-0 to Proposed Families</h2>
+            </div>
+            <div class="evolution-strip" id="evolution-strip" role="list" aria-label="Architecture evolution">
+              <!-- Populated by JS -->
+            </div>
+          </section>
+
+          <section class="section" aria-labelledby="learning-graph-title">
+            <div class="section-header">
+              <span class="kicker">VALIDATION CURVE</span>
+              <h2 id="learning-graph-title">Training Progress (Actual Measurements)</h2>
+            </div>
+            <div class="chart-container">
+              <canvas id="learning-canvas" aria-label="Validation BPC vs training tokens"></canvas>
+              <p class="chart-empty" id="learning-empty">NO EXPERIMENTAL RUNS PUBLISHED YET</p>
+            </div>
+          </section>
+
+          <section class="section" aria-labelledby="lab-notebook-title">
+            <div class="section-header">
+              <span class="kicker">LAB NOTEBOOK</span>
+              <h2 id="lab-notebook-title">Recent Research Entries</h2>
+            </div>
+            <div class="research-list" id="research-list">
+              <p class="empty-state">NO RESEARCH ENTRIES PUBLISHED YET</p>
+            </div>
+          </section>
+
+          <footer class="site-footer">
+            <div class="footer-links">
+              <a href="https://github.com/itsnotalwin/SEED-AI" target="_blank" rel="noopener">Public SEED-AI</a>
+              <span class="divider">|</span>
+              <span>Private SEED-LAB / SEED-BRAIN (access restricted)</span>
+              <span class="divider">|</span>
+              <a href="#methodology" data-view="methodology">Methodology</a>
+            </div>
+            <p class="footer-note">All metrics derived from published experiment reports. No private data exposed. <a href="#methodology" data-view="methodology">Read our methodology →</a></p>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
