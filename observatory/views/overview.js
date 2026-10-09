@@ -213,7 +213,7 @@ window.addEventListener('resize', () => {
   resizeTimeout = setTimeout(() => {
     // Re-render will happen on next view switch
   }, 100);
-}
+});
 
 export function renderResearchList(data) {
   const container = document.getElementById('research-list');

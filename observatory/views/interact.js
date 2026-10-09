@@ -91,8 +91,8 @@ function initInteractView() {
 
   async function loadSeedModel() {
     try {
-      // Import the SEED-0 model dynamically
-      const { SeedModel, Brain } = await import('../src/model.js');
+      // Import the SEED-0 model from observatory model file
+      const { SeedModel, Brain } = await import('../model.js');
       seedModel = new SeedModel({ seed: 1337 });
       
       // Create a brain instance with in-memory storage (not localStorage)

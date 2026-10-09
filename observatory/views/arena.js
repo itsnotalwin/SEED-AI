@@ -65,11 +65,11 @@ export async function renderArena(container, data) {
   `;
 
   // Populate model selectors
-  models = data.models || [];
+  const modelList = data.models || [];
   const selectorA = document.getElementById('arena-model-a');
   const selectorB = document.getElementById('arena-model-b');
 
-  models.forEach(model => {
+  modelList.forEach(model => {
     if (model.status === 'implemented' || model.status === 'trained') {
       const optA = document.createElement('option');
       optA.value = model.id;
@@ -80,7 +80,7 @@ export async function renderArena(container, data) {
   });
 
   // Populate full table
-  populateFullTable(data, models);
+  populateFullTable(data, modelList);
 
   // Compare button handler
   document.getElementById('arena-compare')?.addEventListener('click', () => {
