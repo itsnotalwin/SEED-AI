@@ -1,0 +1,53 @@
+name: Observatory Integration Check
+on:
+  push:
+    branches: [feature/observatory-v1]
+  pull_request:
+    branches: [main, feature/observatory-v1]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: observatory-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-observatory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run legacy tests
+        run: npm test
+      - name: Verify observatory files exist
+        run: |
+          test -f observatory/index.html
+          test -f observatory/styles.css
+          test -f observatory/app.js
+          test -f observatory/data-loader.js
+          test -f observatory/model.js
+          test -f observatory/views/overview.js
+          test -f observatory/views/evolution.js
+          test -f observatory/views/arena.js
+          test -f observatory/views/learning.js
+          test -f observatory/views/research.js
+          test -f observatory/views/model-lab.js
+          test -f observatory/views/interact.js
+          test -f observatory/views/memory.js
+          test -f observatory/public/observatory/v1.json
+      - name: Syntax check observatory JS
+        run: |
+          node --check observatory/app.js
+          node --check observatory/data-loader.js
+          node --check observatory/model.js
+          node --check observatory/views/overview.js
+          node --check observatory/views/evolution.js
+          node --check observatory/views/arena.js
+          node --check observatory/views/learning.js
+          node --check observatory/views/research.js
+          node --check observatory/views/model-lab.js
+          node --check observatory/views/interact.js
+          node --check observatory/views/memory.js

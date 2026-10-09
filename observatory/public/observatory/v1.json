@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "published_at": "2026-10-09T00:00:00Z",
+  "source": "approved experimental summary, never raw training data",
+  "models": [
+    {
+      "id": "seed-0",
+      "status": "implemented",
+      "architecture": "seed0-context3-mlp",
+      "parameters": 6672,
+      "context_chars": 3,
+      "checkpoint_available": false,
+      "description": "Original three-character contextual neural language model. Fixed context of 3 characters, 8-dim embeddings, 48-unit tanh hidden layer."
+    }
+  ],
+  "experiments": [],
+  "research_entries": []
+}

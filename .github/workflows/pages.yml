@@ -21,6 +21,8 @@ jobs:
       - run: npm test
       - name: Verify website files
         run: test -s index.html && test -s src/model.js && test -s src/brain.js && test -s src/app.js && test -s src/style.css
+      - name: Verify observatory files
+        run: test -s observatory/index.html && test -s observatory/styles.css && test -s observatory/app.js && test -s observatory/data-loader.js && test -s observatory/model.js && test -s observatory/views/overview.js && test -s observatory/views/evolution.js && test -s observatory/views/arena.js && test -s observatory/views/learning.js && test -s observatory/views/research.js && test -s observatory/views/model-lab.js && test -s observatory/views/interact.js && test -s observatory/views/memory.js && test -s observatory/public/observatory/v1.json
   deploy:
     needs: verify
     runs-on: ubuntu-latest
@@ -37,6 +39,8 @@ jobs:
           mkdir -p _site/src
           cp index.html _site/index.html
           cp src/*.js src/*.css _site/src/
+          mkdir -p _site/observatory
+          cp -r observatory/* _site/observatory/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
